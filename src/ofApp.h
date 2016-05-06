@@ -1,14 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxTrueTypeFontUC.h"           /* font library */
 #include <ctime>                         /* time function */
 #include <fstream>                       /* read and write files */
 #include <stdlib.h>                      /* srand, rand */
 #include <string>
 #include <vector>
-
-
+#include <sys/time.h>
+#include <stdio.h>
 
 
 class ofApp : public ofBaseApp{
@@ -34,7 +33,6 @@ class ofApp : public ofBaseApp{
 
 		
 		ofVideoGrabber 		vidGrabber;
-        bool                pio;
 		int 				camWidth;
 		int 				camHeight;
         int 				outWidth;
@@ -45,29 +43,48 @@ class ofApp : public ofBaseApp{
         int                 charsCount;
         int                 character;
         int                 r;           // random int
-        int                 n;           // num in string
+        int                 n;           // num in string array 2
+		int                 n0;          // num in string array 3
         int                 lapse;
+		int                 ScreenWidth;
+		int                 ScreenHeight; 
+		int                 segundo;
+        int                 milli;
 
+        float               elapsed;
     
-        ofxTrueTypeFontUC   font;
+		bool                pio;
+		bool                pio0;
+    
+		ofTexture           mirrorTexture;
+        ofTrueTypeFont      font;
         ofBuffer            buffer;
-    
-        string              chars;
-        string              gatilho;
+
+		unsigned char * videoMirror; 
+
+		string              chars0  ;  // letras maiusculas
+        string              chars;     // letras minusculas
+        string              gatilho;   // trigger array2 
+		string              gatilho0;  // trigger array3
         string              allCamera;
         string              dontpad;
+		string              dontpad0;
         string              array0;
         string              array1;
         string              array2;
         string              array3;
 
-        string              str;
-    
-        size_t              found;
+        string              str;     // dontpad string for array 2 
+		string              str0;    // dontpad string for array 3
+
+        size_t              found;   // found Gatilho array 2
+		size_t              found0;  // found Gatilho array 3
     
         time_t              start;
-    
+        struct              timeval t0;
+        struct              timeval t1;
     
         ofHttpResponse      resp;
+		ofHttpResponse      resp0;
     
 };
